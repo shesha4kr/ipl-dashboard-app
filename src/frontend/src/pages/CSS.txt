@@ -1,0 +1,17 @@
+In index.css file:
+
+-> I have added : 
+
+                * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                }
+
+I did this to remove all margins, as each browser has diff margin. By this our styling will be same for all browsers.
+
+-> I added :
+                a {
+                text-decoration: none;
+                }
+    to remove underline from all the links

@@ -1,0 +1,29 @@
+.TeamPage {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 20px;
+}
+
+.TeamName {
+  grid-column: span 3;
+  justify-self: start;
+  align-self: end;
+}
+
+.TeamName h1 {
+  font-size: 4rem;
+}
+
+.WinLoss {
+  grid-column: span 1;
+  justify-self: center;
+  align-self: center;
+}
+
+.LatestMatch {
+  grid-column: span 4;
+  justify-self: center;
+  align-self: center;
+}
