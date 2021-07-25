@@ -2,14 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./YearSelector.css";
 
-export const YearSelector = ({ teamName }) => {
-  const years = [];
-  const startYear = process.env.REACT_APP_START_YEAR;
-  const endYear = process.env.REACT_APP_END_YEAR;
-
-  for (let i = startYear; i <= endYear; i++) {
-    years.push(i);
-  }
+export const YearSelector = ({ teamName, years }) => {
+  if (!years) return null;
 
   return (
     <div className="year-selector">

@@ -53,7 +53,7 @@ export const MatchPage = () => {
   return (
     <div className="match-page">
       <div className="year-selector-postion">
-        <YearSelector teamName={teamName} />
+        <YearSelector teamName={teamName} years={matchesInfo.years} />
       </div>
 
       <div>
