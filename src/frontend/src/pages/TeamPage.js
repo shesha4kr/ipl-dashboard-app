@@ -14,6 +14,11 @@ export const TeamPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
+  const winPercentage = (
+    (team.totalWins * 100) /
+    (team.totalMatches - team.noResult)
+  ).toFixed(2);
+
   useEffect(() => {
     fetchTeamByTeamName();
   }, [teamName]);
@@ -53,19 +58,18 @@ export const TeamPage = () => {
         <PieChart
           data={[
             {
-              title: `Win% = ${
-                (team.totalWins * 100) / team.totalMatches - team.noResult
-              }`,
+              title: `Win% = ${winPercentage}`,
               value: team.totalWins,
               color: "#08bd63",
             },
             {
-              title: "Lost%",
+              title: `Lost% = ${100 - winPercentage}`,
               value: team.totalMatches - team.totalWins - team.noResult,
               color: "#6A2135",
             },
           ]}
         />
+        <h2>Win/Loss%</h2>
       </div>
       <div className="LatestMatch">
         <h2 className="header">Latest Match</h2>
