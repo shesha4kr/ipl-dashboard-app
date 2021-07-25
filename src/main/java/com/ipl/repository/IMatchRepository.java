@@ -32,4 +32,15 @@ public interface IMatchRepository extends CrudRepository<Match, Long> {
 			@Param("secondInnTeam") String secondInnTeam, @Param("startDate") LocalDate startDate,
 			@Param("endDate") LocalDate endDate);
 
+	// To fetch all active years for a team
+	@Query("SELECT DISTINCT m.year from Match m where (m.firstInnTeam=:firstInnTeam OR m.secondInnTeam=:secondInnTeam)")
+	List<Integer> getActiveYearsForATeam(@Param("firstInnTeam") String firstInnTeam, @Param("secondInnTeam") String secondInnTeam);
+	
+	
+	@Query("SELECT DISTINCT m.firstInnTeam from Match m WHERE m.secondInnTeam=:secondInnTeam")
+	List<String> getAllOppositionTeamsFromFirstInnTeamColumn(@Param("secondInnTeam") String secondInnTeam);
+	
+	@Query("SELECT DISTINCT m.secondInnTeam from Match m WHERE m.firstInnTeam=:firstInnTeam")
+	List<String> getAllOppositionTeamsFromSecondInnTeamColumn(@Param("firstInnTeam") String firstInnTeam);
+
 }

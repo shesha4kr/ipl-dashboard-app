@@ -18,8 +18,10 @@ public class MatchDataProcessor implements ItemProcessor<MatchData, Match> {
 
 		try {
 			final Long matchId = Long.parseLong(matchData.getMatchId());
+			log.info("MATCH ID:"+matchId);
 			final String city = matchData.getCity();
 			final LocalDate date = LocalDate.parse(matchData.getDate());
+			final Integer year = getYearFromDate(matchData.getDate());
 			final String manOfMatch = matchData.getManOfMatch();
 			final String venue = matchData.getVenue();
 			final Boolean isNeutralVenue = transformIsNuetralVenue(matchData.getIsNeutralVenue());
@@ -34,7 +36,7 @@ public class MatchDataProcessor implements ItemProcessor<MatchData, Match> {
 			final String umpire1 = matchData.getUmpire1();
 			final String umpire2 = matchData.getUmpire2();
 
-			final Match match = new Match(matchId, city, date, manOfMatch, venue, isNeutralVenue, tossWinner,
+			final Match match = new Match(matchId, city, date, year, manOfMatch, venue, isNeutralVenue, tossWinner,
 					tossDecision, matchWinner, result, resultMargin, isEliminator, method, umpire1, umpire2);
 
 			setFirstAndSecondInnTeams(matchData.getFirstInnTeam(), matchData.getSecondInnTeam(), tossWinner,
@@ -68,5 +70,9 @@ public class MatchDataProcessor implements ItemProcessor<MatchData, Match> {
 			match.setSecondInnTeam(tossWinner);
 			match.setFirstInnTeam(team1.equals(tossWinner) ? team2 : team1);
 		}
+	}
+	
+	public Integer getYearFromDate (String date) {
+		return Integer.valueOf(date.substring(0,4));
 	}
 }

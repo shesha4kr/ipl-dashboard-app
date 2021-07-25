@@ -12,6 +12,7 @@ public class Match {
 	private long matchId;
 	private String city;
 	private LocalDate date;
+	private Integer year;
 	private String manOfMatch;
 	private String venue;
 	private Boolean isNeutralVenue;
@@ -31,13 +32,14 @@ public class Match {
 		super();
 	}
 
-	public Match(long matchId, String city, LocalDate date, String manOfMatch, String venue, Boolean isNeutralVenue,
+	public Match(long matchId, String city, LocalDate date, Integer year, String manOfMatch, String venue, Boolean isNeutralVenue,
 			String tossWinner, String tossDecision, String matchWinner, String result, Integer resultMargin,
 			String eliminator, String method, String umpire1, String umpire2) {
 		super();
 		this.matchId = matchId;
 		this.city = city;
 		this.date = date;
+		this.year = year;
 		this.manOfMatch = manOfMatch;
 		this.venue = venue;
 		this.isNeutralVenue = isNeutralVenue;
@@ -50,6 +52,14 @@ public class Match {
 		this.method = method;
 		this.umpire1 = umpire1;
 		this.umpire2 = umpire2;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
 	public long getMatchId() {
