@@ -39,7 +39,6 @@ export const IplDashboard = () => {
   return (
     <div>
       <h1 className="heading">Welcome to IPL Dashboard</h1>
-
       <div className="dashboard">
         {allTeamNames.map((team) => {
           return (

@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { FaFilter, FaHome } from "react-icons/fa";
+import { MdFilter1, MdFilter2 } from "react-icons/md";
+import { Link, useParams } from "react-router-dom";
+import { Filter } from "../components/Filter";
 import { LatestMatchDetail } from "../components/LatestMatchDetail";
 import { YearSelector } from "../components/YearSelector";
 import "./../css/MatchPage.css";
@@ -7,8 +10,14 @@ import "./../css/MatchPage.css";
 export const MatchPage = () => {
   console.log("Inside MatchPage");
   const { teamName, year } = useParams();
-  const [matches, setMatches] = useState([]);
+  const [matchesInfo, setMatchesInfo] = useState({
+    matches: [],
+    years: [],
+    oppositionTeams: [],
+  });
   const [isLoading, setLoading] = useState(true);
+  const [isFilter, setIsFilter] = useState(false);
+  let filter = 2;
   const url = `http://localhost:8080/team/${teamName}/matches?year=${year}`;
 
   const fetchTeamDetailsByYear = async () => {
@@ -16,9 +25,11 @@ export const MatchPage = () => {
     const responseInJson = await fetch(url);
     console.log("After JSON fetch");
     const response = await responseInJson.json();
+    console.log("NEW MATCHES:" + response);
     console.log("After DATA fetch");
     setLoading(false);
-    setMatches(response);
+    setMatchesInfo(response);
+    console.log("MATCH DETAILS:" + matchesInfo);
   };
 
   useEffect(() => {
@@ -27,7 +38,9 @@ export const MatchPage = () => {
 
   if (isLoading) return <h1>{`Fetching Match Details for ${teamName}...`}</h1>;
 
-  if (matches.length === 0)
+  if (!matchesInfo) return null;
+
+  if (matchesInfo.matches.length === 0)
     return (
       <div className="match-page">
         <div>
@@ -39,14 +52,37 @@ export const MatchPage = () => {
 
   return (
     <div className="match-page">
-      <div>
+      <div className="year-selector-postion">
         <YearSelector teamName={teamName} />
       </div>
 
       <div>
-        <h1 className="match-details-header">{`Matches of ${teamName} in ${year}`}</h1>
+        <div className="match-details-header">
+          <h1>{`Matches of ${teamName} in ${year}`}</h1>
 
-        {matches.map((match) => {
+          <div className="filter-position">
+            <FaFilter size="1.8rem" />
+          </div>
+
+          {filter === 0 ? (
+            ""
+          ) : filter === 1 ? (
+            <MdFilter1
+              size="1rem"
+              style={{ marginTop: "-10px", marginLeft: "-20px" }}
+            />
+          ) : (
+            <MdFilter2 size="1rem" style={{ marginTop: "-10px" }} />
+          )}
+
+          <div className="home-btn-position">
+            <Link to={`/`}>
+              <FaHome size="2rem" />
+            </Link>
+          </div>
+        </div>
+
+        {matchesInfo.matches.map((match) => {
           return (
             <div className="each-match">
               <LatestMatchDetail match={match} teamName={teamName} />
@@ -54,47 +90,10 @@ export const MatchPage = () => {
           );
         })}
       </div>
+
+      <div>
+        <Filter />
+      </div>
     </div>
   );
-
-  // const { teamName, year } = useParams();
-  // const [isLoading, setLoading] = useState(true);
-  // const [matches, setMatches] = useState([]);
-  // const url = `http://localhost:8080/team/${teamName}/matches?year=${year}`;
-
-  // useEffect(() => {
-  //   fetchTeamDetailsByYear();
-  // }, []);
-
-  // const fetchTeamDetailsByYear = async () => {
-  //   console.log("Inside fetch");
-  //   const responseInJson = await fetch(url);
-  //   console.log("After JSON fetch");
-  //   const response = await responseInJson.json();
-  //   console.log("After DATA fetch");
-  //   setLoading(false);
-  //   setMatches(response);
-  // };
-
-  // // if (isLoading) return <h1>Fetching Info...</h1>;
-
-  // // if (matches.length === 0) return <h1>No Records Found</h1>;
-
-  // return (
-  //   <div className="match-page">
-  //     <div>
-  //       <YearSelector teamName={teamName} />
-  //     </div>
-
-  //     <div>
-  //       {matches.map((match) => {
-  //         return (
-  //           <div key={match.matchId}>
-  //             <LatestMatchDetail match={match} teamName={teamName} />
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //   </div>
-  // );
 };

@@ -1,8 +1,9 @@
 import { React, useEffect, useState } from "react";
 import { LatestMatchDetail } from "../components/LatestMatchDetail";
-import { MatchDetail } from "../components/MatchDetail";
+import { MatchDetail } from "../components/BriefMatchDetail";
 import { Link, useParams } from "react-router-dom";
 import { PieChart } from "react-minimal-pie-chart";
+import { FaHome } from "react-icons/fa";
 import "../css/TeamPage.css";
 
 export const TeamPage = () => {
@@ -43,27 +44,33 @@ export const TeamPage = () => {
       <div className="TeamName">
         <h1>{team.teamName}</h1>
       </div>
-
-      <div className="WinLoss">
-        <h1>
-          <PieChart
-            data={[
-              { title: "One", value: team.totalWins, color: "#08bd63" },
-              {
-                title: "Two",
-                value: team.totalMatches - team.totalWins - team.noResult,
-                color: "#6A2135",
-              },
-            ]}
-          />
-        </h1>
+      <div className="btn-position">
+        <Link to={`/`}>
+          <FaHome size="2rem" />
+        </Link>
       </div>
-
+      <div className="WinLoss">
+        <PieChart
+          data={[
+            {
+              title: `Win% = ${
+                (team.totalWins * 100) / team.totalMatches - team.noResult
+              }`,
+              value: team.totalWins,
+              color: "#08bd63",
+            },
+            {
+              title: "Lost%",
+              value: team.totalMatches - team.totalWins - team.noResult,
+              color: "#6A2135",
+            },
+          ]}
+        />
+      </div>
       <div className="LatestMatch">
         <h2 className="header">Latest Match</h2>
         <LatestMatchDetail match={team.matches[0]} teamName={team.teamName} />
       </div>
-
       {team.matches.slice(1).map((match, index) => {
         return (
           <div key={index} className="MatchDetail">
@@ -71,10 +78,7 @@ export const TeamPage = () => {
           </div>
         );
       })}
-
-      <Link
-        to={`/team/${team.teamName}/matches/${process.env.REACT_APP_END_YEAR}`}
-      >
+      <Link to={`/team/${team.teamName}/matches/${team.matches[0].year}`}>
         <p style={{ marginTop: "50px" }}>see more</p>
       </Link>
     </div>

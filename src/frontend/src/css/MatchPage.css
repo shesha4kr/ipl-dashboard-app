@@ -1,15 +1,25 @@
 .match-page {
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: auto 1fr auto;
+  grid-auto-columns: auto;
   column-gap: 50px;
   padding: 50px;
 }
 
 .match-details-header {
+  display: grid;
+  grid-template-columns: 10fr auto auto auto;
   padding: 10px;
-  text-align: center;
+  justify-self: center;
 }
 
 .each-match {
   padding: 20px;
+}
+
+.home-btn-postion {
+  justify-self: end;
+  align-self: end;
+  padding-top: 20px;
+  margin-top: 20px;
 }
