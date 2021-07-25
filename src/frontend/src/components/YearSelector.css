@@ -1,0 +1,8 @@
+.year-selector {
+  text-align: right;
+}
+
+.year-selector ol li {
+  list-style-type: none;
+  padding: 5px 0px 1px 0px;
+}

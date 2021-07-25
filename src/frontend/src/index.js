@@ -5,6 +5,7 @@ import { IplDashboard } from "./pages/IplDashboard";
 import { TeamPage } from "./pages/TeamPage";
 import { MatchPage } from "./pages/MatchPage";
 import { ErrorPage } from "./pages/ErrorPage";
+import "./css/index.css";
 
 const HandleReactRoute = () => {
   return (
@@ -32,7 +33,6 @@ const HandleReactRoute = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <IplDashboard /> */}
     <HandleReactRoute />
   </React.StrictMode>,
   document.getElementById("root")

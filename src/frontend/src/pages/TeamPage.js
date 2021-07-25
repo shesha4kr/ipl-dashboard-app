@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import { LatestMatchDetail } from "../components/LatestMatchDetail";
 import { MatchDetail } from "../components/MatchDetail";
 import { Link, useParams } from "react-router-dom";
+import { PieChart } from "react-minimal-pie-chart";
 import "../css/TeamPage.css";
 
 export const TeamPage = () => {
@@ -44,10 +45,22 @@ export const TeamPage = () => {
       </div>
 
       <div className="WinLoss">
-        <h1>Win/Total</h1>
+        <h1>
+          <PieChart
+            data={[
+              { title: "One", value: team.totalWins, color: "#08bd63" },
+              {
+                title: "Two",
+                value: team.totalMatches - team.totalWins - team.noResult,
+                color: "#6A2135",
+              },
+            ]}
+          />
+        </h1>
       </div>
 
       <div className="LatestMatch">
+        <h2 className="header">Latest Match</h2>
         <LatestMatchDetail match={team.matches[0]} teamName={team.teamName} />
       </div>
 
@@ -59,8 +72,10 @@ export const TeamPage = () => {
         );
       })}
 
-      <Link to={`/team/${team.teamName}/matches/2020`}>
-        <p>see more</p>
+      <Link
+        to={`/team/${team.teamName}/matches/${process.env.REACT_APP_END_YEAR}`}
+      >
+        <p style={{ marginTop: "50px" }}>see more</p>
       </Link>
     </div>
   );
