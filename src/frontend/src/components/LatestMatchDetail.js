@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./../css/LatestMatchDetail.css";
 
@@ -15,13 +14,25 @@ export const LatestMatchDetail = ({ match, teamName }) => {
   const dLMethod = match.method === "Normal" ? "" : "by D/L Method";
 
   if (isMatchOutcome) {
-    var matchResult = `${match.matchWinner} won by ${match.resultMargin} ${match.result} ${dLMethod}`;
+    if (match.resultMargin) {
+      var matchResult = `${match.matchWinner} won by ${match.resultMargin} ${match.result} ${dLMethod}`;
+    } else {
+      matchResult = `Match was Tied. ${match.matchWinner} won in Super Over`;
+    }
   } else {
     matchResult = `Match abandoned due to rain`;
   }
 
   return (
-    <div className= { isMatchOutcome ? thisTeamWon ? "match-winner" : "match-looser" : "match-abandoned" } >
+    <div
+      className={
+        isMatchOutcome
+          ? thisTeamWon
+            ? "match-winner"
+            : "match-looser"
+          : "match-abandoned"
+      }
+    >
       <div className="latest-match-header">
         <h1>vs</h1>
         <div className="other-team-header">

@@ -16,23 +16,18 @@ export const MatchPage = () => {
     oppositionTeams: [],
   });
   const [isLoading, setLoading] = useState(true);
-  const [isFilter, setIsFilter] = useState(false);
-  let filter = 2;
-  const url = `http://localhost:8080/team/${teamName}/matches?year=${year}`;
-
-  const fetchTeamDetailsByYear = async () => {
-    console.log("Inside fetch");
-    const responseInJson = await fetch(url);
-    console.log("After JSON fetch");
-    const response = await responseInJson.json();
-    console.log("NEW MATCHES:" + response);
-    console.log("After DATA fetch");
-    setLoading(false);
-    setMatchesInfo(response);
-    console.log("MATCH DETAILS:" + matchesInfo);
-  };
+  // const [isFilter, setIsFilter] = useState(false);
+  let filter = 0;
 
   useEffect(() => {
+    const url = `http://localhost:8080/team/${teamName}/matches?year=${year}`;
+    const fetchTeamDetailsByYear = async () => {
+      const responseInJson = await fetch(url);
+      const response = await responseInJson.json();
+      setLoading(false);
+      setMatchesInfo(response);
+    };
+
     fetchTeamDetailsByYear();
   }, [teamName, year]);
 
@@ -84,7 +79,7 @@ export const MatchPage = () => {
 
         {matchesInfo.matches.map((match) => {
           return (
-            <div className="each-match">
+            <div className="each-match" key={match.matchId}>
               <LatestMatchDetail match={match} teamName={teamName} />
             </div>
           );

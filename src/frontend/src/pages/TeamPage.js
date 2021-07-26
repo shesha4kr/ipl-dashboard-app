@@ -20,25 +20,22 @@ export const TeamPage = () => {
   ).toFixed(2);
 
   useEffect(() => {
+    const url = `http://localhost:8080/team/${teamName}`;
+
+    const fetchTeamByTeamName = async () => {
+      try {
+        const response = await fetch(url);
+        const teamFromBE = await response.json();
+        setLoading(false);
+        setTeam(teamFromBE);
+      } catch (error) {
+        setLoading(false);
+        setError(true);
+      }
+    };
+
     fetchTeamByTeamName();
   }, [teamName]);
-
-  const url = `http://localhost:8080/team/${teamName}`;
-
-  const fetchTeamByTeamName = async () => {
-    try {
-      console.log("Inside Try");
-      const response = await fetch(url);
-      const teamFromBE = await response.json();
-      setLoading(false);
-      setTeam(teamFromBE);
-      console.log("Outside Try");
-    } catch (error) {
-      console.log("Inside Catch");
-      setLoading(false);
-      setError(true);
-    }
-  };
 
   if (isLoading) return <h1>Fetching Team...</h1>;
 
@@ -75,9 +72,9 @@ export const TeamPage = () => {
         <h2 className="header">Latest Match</h2>
         <LatestMatchDetail match={team.matches[0]} teamName={team.teamName} />
       </div>
-      {team.matches.slice(1).map((match, index) => {
+      {team.matches.slice(1).map((match) => {
         return (
-          <div key={index} className="MatchDetail">
+          <div key={match.matchId} className="MatchDetail">
             <MatchDetail match={match} teamName={team.teamName} />
           </div>
         );

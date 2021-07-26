@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React } from "react";
 
 export const Filter = () => {
   const iplData = [
@@ -9,24 +9,26 @@ export const Filter = () => {
     { id: 5, name: "Mumbai Indians" },
   ];
 
-  const handleChange = (event) => {
-    event.preventDefault();
-    setTeam(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   event.preventDefault();
+  //   setTeam(event.target.value);
+  // };
 
-  const [team, setTeam] = useState("Select Team");
+  // const [team, setTeam] = useState("Select Team");
   return (
     <form>
-      <select id="myList" value={team}>
+      <select id="myList" value="Select Team" readOnly>
         {iplData.map((data) => (
-          <option value={data.name}>{data.name}</option>
+          <option value={data.name} key={data.id}>
+            {data.name}
+          </option>
         ))}
       </select>
       <p>
         Your selected tutorial site is:
         <input type="text" id="favourite" size="20" />
-      </p>+
-      
+      </p>
+      +
     </form>
   );
 };
