@@ -20,7 +20,8 @@ export const MatchPage = () => {
   let filter = 0;
 
   useEffect(() => {
-    const url = `http://localhost:8080/team/${teamName}/matches?year=${year}`;
+    const url = `${process.env.REACT_APP_URL}/team/${teamName}/matches?year=${year}`;
+    console.log("URL:" + url);
     const fetchTeamDetailsByYear = async () => {
       const responseInJson = await fetch(url);
       const response = await responseInJson.json();

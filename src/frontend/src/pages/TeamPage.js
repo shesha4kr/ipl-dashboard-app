@@ -20,7 +20,9 @@ export const TeamPage = () => {
   ).toFixed(2);
 
   useEffect(() => {
-    const url = `http://localhost:8080/team/${teamName}`;
+    const url = `${process.env.REACT_APP_URL}/team/${teamName}`;
+
+    console.log("URL:" + url);
 
     const fetchTeamByTeamName = async () => {
       try {

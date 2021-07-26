@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5a2baf73.chunk.css",
+    "main.js": "/static/js/main.2e7e17ae.chunk.js",
+    "main.js.map": "/static/js/main.2e7e17ae.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8233b8b5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8233b8b5.js.map",
+    "static/js/2.0dfe6258.chunk.js": "/static/js/2.0dfe6258.chunk.js",
+    "static/js/2.0dfe6258.chunk.js.map": "/static/js/2.0dfe6258.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.5a2baf73.chunk.css.map": "/static/css/main.5a2baf73.chunk.css.map",
+    "static/js/2.0dfe6258.chunk.js.LICENSE.txt": "/static/js/2.0dfe6258.chunk.js.LICENSE.txt",
+    "static/media/chennai.4e1292a8.jpeg": "/static/media/chennai.4e1292a8.jpeg",
+    "static/media/deccan-chargers.3cf72c75.jpeg": "/static/media/deccan-chargers.3cf72c75.jpeg",
+    "static/media/delhi.5a7ede0f.jpeg": "/static/media/delhi.5a7ede0f.jpeg",
+    "static/media/gujarat.95267af2.jpeg": "/static/media/gujarat.95267af2.jpeg",
+    "static/media/hyderabad.f79b2ecc.jpeg": "/static/media/hyderabad.f79b2ecc.jpeg",
+    "static/media/kochi.f650ef43.jpeg": "/static/media/kochi.f650ef43.jpeg",
+    "static/media/kolkata.0ff7abc7.jpeg": "/static/media/kolkata.0ff7abc7.jpeg",
+    "static/media/mumbai.eeffb984.jpeg": "/static/media/mumbai.eeffb984.jpeg",
+    "static/media/pune-warriors.d292cfbc.jpeg": "/static/media/pune-warriors.d292cfbc.jpeg",
+    "static/media/punjab.2418b9e9.jpeg": "/static/media/punjab.2418b9e9.jpeg",
+    "static/media/rajasthan.38653d7d.jpeg": "/static/media/rajasthan.38653d7d.jpeg",
+    "static/media/rcb.23e96d17.jpeg": "/static/media/rcb.23e96d17.jpeg",
+    "static/media/rising-pune.fdc7af33.jpeg": "/static/media/rising-pune.fdc7af33.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8233b8b5.js",
+    "static/js/2.0dfe6258.chunk.js",
+    "static/css/main.5a2baf73.chunk.css",
+    "static/js/main.2e7e17ae.chunk.js"
+  ]
+}

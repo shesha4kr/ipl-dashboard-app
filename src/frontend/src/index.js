@@ -16,9 +16,7 @@ const HandleReactRoute = () => {
         </Route>
 
         <Route exact path="/team/:teamName">
-          console.log("Inside Link");
           <TeamPage />
-          console.log("Outside Link");
         </Route>
 
         <Route exact path="/team/:teamName/matches/:year">

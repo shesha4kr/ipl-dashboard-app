@@ -1,14 +1,7 @@
 import { React } from "react";
+import { iplData } from "../data/AllData";
 
 export const Filter = () => {
-  const iplData = [
-    { id: 1, name: "Chennai Super Kings" },
-    { id: 2, name: "Delhi Capitals" },
-    { id: 3, name: "Kings XI Punjab" },
-    { id: 4, name: "Kolkata Knight Riders" },
-    { id: 5, name: "Mumbai Indians" },
-  ];
-
   // const handleChange = (event) => {
   //   event.preventDefault();
   //   setTeam(event.target.value);
